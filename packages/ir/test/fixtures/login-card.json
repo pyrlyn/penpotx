@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "card",
+      "kind": "board",
+      "name": "Login card",
+      "x": 0,
+      "y": 0,
+      "width": 360,
+      "height": 420,
+      "radius": { "topLeft": 16, "topRight": 16, "bottomRight": 16, "bottomLeft": 16 },
+      "fills": [{ "type": "solid", "color": "#ffffff" }],
+      "effects": [
+        { "type": "drop-shadow", "offsetY": 8, "blur": 24, "color": "#000000", "opacity": 0.12 }
+      ],
+      "layout": {
+        "type": "flex",
+        "direction": "column",
+        "rowGap": 16,
+        "padding": { "top": 32, "right": 24, "bottom": 32, "left": 24 },
+        "alignItems": "stretch"
+      },
+      "sizing": { "horizontal": "fix", "vertical": "auto" },
+      "tokens": { "fill": "color.surface" },
+      "children": [
+        {
+          "id": "logo",
+          "kind": "image",
+          "name": "Logo",
+          "x": 24,
+          "y": 32,
+          "width": 48,
+          "height": 48,
+          "asset": "logo-png",
+          "layoutChild": { "alignSelf": "center" }
+        },
+        {
+          "id": "title",
+          "kind": "text",
+          "name": "Title",
+          "x": 24,
+          "y": 96,
+          "width": 312,
+          "height": 32,
+          "growType": "auto-height",
+          "align": "center",
+          "runs": [
+            {
+              "text": "Welcome ",
+              "fontFamily": "Inter",
+              "fontWeight": 400,
+              "fontSize": 24,
+              "fills": [{ "type": "solid", "color": "#1a1a1a" }]
+            },
+            {
+              "text": "back",
+              "fontFamily": "Inter",
+              "fontWeight": 700,
+              "fontSize": 24,
+              "fills": [{ "type": "solid", "color": "#0055ff" }]
+            }
+          ],
+          "layoutChild": { "horizontalSizing": "fill" }
+        },
+        {
+          "id": "sign-in",
+          "kind": "board",
+          "name": "Button",
+          "component": "button-primary",
+          "x": 24,
+          "y": 344,
+          "width": 312,
+          "height": 44,
+          "radius": { "topLeft": 8, "topRight": 8, "bottomRight": 8, "bottomLeft": 8 },
+          "fills": [
+            {
+              "type": "linear-gradient",
+              "start": { "x": 0, "y": 0 },
+              "end": { "x": 1, "y": 1 },
+              "stops": [
+                { "color": "#0055ff", "offset": 0 },
+                { "color": "#3377ff", "offset": 1 }
+              ]
+            }
+          ],
+          "tokens": { "fill": "color.primary" },
+          "layout": {
+            "type": "flex",
+            "direction": "row",
+            "justifyContent": "center",
+            "alignItems": "center"
+          },
+          "layoutChild": { "horizontalSizing": "fill" },
+          "children": [
+            {
+              "id": "sign-in-label",
+              "kind": "text",
+              "x": 128,
+              "y": 12,
+              "width": 56,
+              "height": 20,
+              "runs": [
+                {
+                  "text": "Sign in",
+                  "fontFamily": "Inter",
+                  "fontWeight": 600,
+                  "fontSize": 16,
+                  "fills": [{ "type": "solid", "color": "#ffffff" }]
+                }
+              ]
+            },
+            {
+              "id": "arrow",
+              "kind": "path",
+              "x": 190,
+              "y": 14,
+              "width": 16,
+              "height": 16,
+              "d": "M2 8h12M9 3l5 5-5 5",
+              "strokes": [
+                {
+                  "paint": { "type": "solid", "color": "#ffffff" },
+                  "width": 2,
+                  "alignment": "center"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "assets": [{ "id": "logo-png", "mediaType": "image/png", "width": 96, "height": 96 }],
+  "tokenSets": [
+    {
+      "name": "core",
+      "tokens": [
+        { "name": "color.primary", "type": "color", "value": "#0055ff" },
+        {
+          "name": "color.surface",
+          "type": "color",
+          "value": "{color.white}",
+          "resolved": "#ffffff"
+        },
+        { "name": "color.white", "type": "color", "value": "#ffffff" }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "button-primary",
+      "name": "Primary",
+      "path": "Buttons / Primary",
+      "variant": { "state": "default" }
+    }
+  ]
+}

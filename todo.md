@@ -1,4 +1,3 @@
-- T2. Shared IR and schema
 - T3. Plugin API → IR adapter
 - T4. Slint emitter and plugin
 - T5. SwiftUI emitter and plugin

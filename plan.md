@@ -4,17 +4,12 @@ Penpot plugins sharing one TypeScript core: Slint, SwiftUI and WinUI code conver
 
 | # | Status | Priority | Complexity | Readiness | Agent |
 | --- | --- | --- | --- | --- | --- |
-| T2 | todo | P0 | 3 | 0% | |
 | T3 | todo | P0 | 4 | 0% | |
 | T4 | todo | P1 | 4 | 0% | |
 | T5 | todo | P1 | 4 | 0% | |
 | T6 | todo | P1 | 4 | 0% | |
 | T7 | in progress | P1 | 3 | 90% | Claude Code / claude-opus-5-5 |
 | T8 | todo | P2 | 4 | 0% | |
-
-### T2. Shared IR and schema
-
-TypeScript types plus a runtime schema for the intermediate representation: nodes (board, rect, ellipse, text with styled runs, path, image, group), flex and grid layout, sizing, paints, strokes, effects, components, variants and tokens as first-class nodes. Records design intent, not target rendering (see `research.md`). Done when the schema validates hand-written fixtures and rejects malformed ones, with tests.
 
 ### T3. Plugin API → IR adapter
 

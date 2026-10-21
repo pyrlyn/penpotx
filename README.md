@@ -20,7 +20,7 @@ pnpm build
 
 Load a plugin in Penpot: run `pnpm --filter @penpotx/plugin-hello build && pnpm --filter @penpotx/plugin-hello preview` (`plugin-claude` serves on port 4411), open the Plugin Manager (Ctrl+Alt+P, ⌘⌥P on macOS) and install `http://localhost:4410/manifest.json`. Chrome asks whether the Penpot site may access the local network; allow it, or the install fails with "The plugin doesn't exist or the URL is not correct".
 
-Layout: `packages/plugin-shell` (shared UI messaging, download helper, manifest schema, Vite configs), `apps/plugin-*` (one Penpot plugin each).
+Layout: `packages/ir` (the shared IR schema and `parseIr`), `packages/plugin-shell` (shared UI messaging, download helper, manifest schema, Vite configs), `apps/plugin-*` (one Penpot plugin each).
 
 ## License
 

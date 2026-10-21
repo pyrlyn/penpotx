@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // No DOM: the IR is also built inside plugin code, which has none.
+    "lib": ["es2022"],
+    "types": ["node"]
+  },
+  "include": ["src", "test"]
+}

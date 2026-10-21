@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "gallery",
+      "kind": "board",
+      "name": "Gallery",
+      "x": 0,
+      "y": 0,
+      "width": 640,
+      "height": 400,
+      "layout": {
+        "type": "grid",
+        "rows": [
+          { "type": "flex", "value": 1 },
+          { "type": "fixed", "value": 120 }
+        ],
+        "columns": [
+          { "type": "percent", "value": 50 },
+          { "type": "auto" },
+          { "type": "flex", "value": 2 }
+        ],
+        "rowGap": 8,
+        "columnGap": 8,
+        "justifyItems": "stretch",
+        "alignItems": "stretch"
+      },
+      "children": [
+        {
+          "id": "hero",
+          "kind": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 272,
+          "fills": [
+            {
+              "type": "radial-gradient",
+              "start": { "x": 0.5, "y": 0.5 },
+              "end": { "x": 1, "y": 0.5 },
+              "width": 0.6,
+              "stops": [
+                { "color": "#ffcc00", "offset": 0 },
+                { "color": "#ff6600", "offset": 1, "opacity": 0.8 }
+              ]
+            }
+          ],
+          "layoutChild": { "cell": { "row": 1, "column": 1, "columnSpan": 2, "area": "hero" } }
+        },
+        {
+          "id": "badge",
+          "kind": "ellipse",
+          "x": 600,
+          "y": 8,
+          "width": 32,
+          "height": 32,
+          "blendMode": "multiply",
+          "strokes": [
+            {
+              "paint": { "type": "solid", "color": "#222222" },
+              "width": 1,
+              "alignment": "inner",
+              "style": "dashed"
+            }
+          ],
+          "effects": [{ "type": "layer-blur", "radius": 2 }],
+          "layoutChild": { "absolute": true, "zIndex": 10 },
+          "constraints": { "horizontal": "right", "vertical": "top" }
+        },
+        {
+          "id": "caption-group",
+          "kind": "group",
+          "x": 0,
+          "y": 280,
+          "width": 640,
+          "height": 120,
+          "layoutChild": { "cell": { "row": 2, "column": 1, "columnSpan": 3 } },
+          "children": [
+            {
+              "id": "caption",
+              "kind": "text",
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 24,
+              "runs": [
+                {
+                  "text": "Summer collection",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                  "letterSpacing": 1.5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
