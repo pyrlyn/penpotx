@@ -1,0 +1,17 @@
+{
+  "name": "@penpotx/plugin-hello",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "vite build && vite build -c vite.plugin.config.ts",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.plugin.json"
+  },
+  "dependencies": {
+    "@penpotx/plugin-shell": "workspace:*"
+  },
+  "devDependencies": {
+    "@penpot/plugin-types": "1.5.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "penpotx hello",
+  "description": "Empty penpotx plugin: checks that the shared shell builds and loads.",
+  "version": 2,
+  "code": "plugin.js",
+  "permissions": ["content:read"]
+}

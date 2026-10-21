@@ -1,0 +1,4 @@
+{
+  "endOfLine": "lf",
+  "ignorePatterns": ["**/dist/**", "research.md"]
+}
