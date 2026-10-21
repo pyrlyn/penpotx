@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "types": ["node"]
+  },
+  "include": [
+    "src/ui",
+    "src/messages.ts",
+    "src/collect.ts",
+    "test",
+    "vite.config.ts",
+    "vite.plugin.config.ts"
+  ]
+}

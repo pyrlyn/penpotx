@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // No DOM: plugin code runs in an SES compartment without window or document.
+    "lib": ["es2022"],
+    "types": ["@penpot/plugin-types"]
+  },
+  "include": ["src/plugin.ts", "src/collect.ts", "src/messages.ts"]
+}

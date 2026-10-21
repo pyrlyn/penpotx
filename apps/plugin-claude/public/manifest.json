@@ -1,0 +1,7 @@
+{
+  "name": "penpotx Claude",
+  "description": "Exports the Penpot file, the selection and a prompt as a bundle to upload to Claude Design.",
+  "version": 2,
+  "code": "plugin.js",
+  "permissions": ["content:read", "library:read", "allow:downloads"]
+}
