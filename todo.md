@@ -4,3 +4,5 @@
 - T6. WinUI 3 XAML emitter and plugin
 - T7. Claude Design handoff plugin
 - T8. Redesign with Claude
+- T9. Claude Code plugin: Penpot in the desktop browser
+- T10. Serve the penpotx plugins locally and over https
