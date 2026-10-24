@@ -18,9 +18,18 @@ pnpm check      # format check, lint, typecheck, tests
 pnpm build
 ```
 
-Load a plugin in Penpot: run `pnpm --filter @penpotx/plugin-hello build && pnpm --filter @penpotx/plugin-hello preview`, open the Plugin Manager (Ctrl+Alt+P, ⌘⌥P on macOS) and install `http://localhost:4410/manifest.json`. Chrome asks whether the Penpot site may access the local network; allow it, or the install fails with "The plugin doesn't exist or the URL is not correct".
+Load a plugin in Penpot: run `pnpm --filter @penpotx/plugin-hello build && pnpm --filter @penpotx/plugin-hello preview` (`plugin-claude` serves on port 4411), open the Plugin Manager (Ctrl+Alt+P, ⌘⌥P on macOS) and install `http://localhost:4410/manifest.json`. Chrome asks whether the Penpot site may access the local network; allow it, or the install fails with "The plugin doesn't exist or the URL is not correct".
 
-Layout: `packages/plugin-shell` (shared UI messaging, download helper, manifest schema, Vite configs), `apps/plugin-*` (one Penpot plugin each).
+Layout: `packages/ir` (the shared IR schema and `parseIr`), `packages/plugin-shell` (shared UI messaging, download helper, manifest schema, Vite configs), `apps/plugin-*` (one Penpot plugin each).
+
+## Claude Code plugin
+
+`apps/claude-code-plugin` is a Claude Code plugin whose `/penpotx:penpot [name or url ...]` skill opens Penpot, its docs, plugin hub and other Penpot pages in their own tabs of the Claude desktop app's built-in browser (usage and examples: `apps/claude-code-plugin/README.md`). Install it from this repository's marketplace:
+
+```sh
+claude plugin marketplace add /path/to/penpotx
+claude plugin install penpotx@penpotx
+```
 
 ## License
 

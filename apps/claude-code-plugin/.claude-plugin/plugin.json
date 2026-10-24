@@ -1,0 +1,8 @@
+{
+  "name": "penpotx",
+  "version": "0.1.0",
+  "description": "Opens Penpot in its own tab of the Claude desktop app's built-in browser, next to the session.",
+  "author": { "name": "Ivan Tugay" },
+  "license": "MIT",
+  "keywords": ["penpot", "design", "browser"]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "penpotx",
+  "owner": { "name": "Ivan Tugay" },
+  "description": "Penpot tools for Claude Code.",
+  "plugins": [
+    {
+      "name": "penpotx",
+      "source": "./apps/claude-code-plugin",
+      "description": "Opens Penpot in its own tab of the Claude desktop app's built-in browser, next to the session."
+    }
+  ]
+}

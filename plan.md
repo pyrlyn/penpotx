@@ -4,17 +4,14 @@ Penpot plugins sharing one TypeScript core: Slint, SwiftUI and WinUI code conver
 
 | # | Status | Priority | Complexity | Readiness | Agent |
 | --- | --- | --- | --- | --- | --- |
-| T2 | todo | P0 | 3 | 0% | |
 | T3 | todo | P0 | 4 | 0% | |
 | T4 | todo | P1 | 4 | 0% | |
 | T5 | todo | P1 | 4 | 0% | |
 | T6 | todo | P1 | 4 | 0% | |
-| T7 | todo | P1 | 3 | 0% | |
+| T7 | in progress | P1 | 3 | 90% | Claude Code / claude-opus-5-5 |
 | T8 | todo | P2 | 4 | 0% | |
-
-### T2. Shared IR and schema
-
-TypeScript types plus a runtime schema for the intermediate representation: nodes (board, rect, ellipse, text with styled runs, path, image, group), flex and grid layout, sizing, paints, strokes, effects, components, variants and tokens as first-class nodes. Records design intent, not target rendering (see `research.md`). Done when the schema validates hand-written fixtures and rejects malformed ones, with tests.
+| T9 | in progress | P1 | 2 | 90% | Claude Code / claude-opus-5-5 |
+| T10 | todo | P1 | 2 | 0% | |
 
 ### T3. Plugin API → IR adapter
 
@@ -36,6 +33,33 @@ Pure emitter IR → WinUI 3 XAML (StackPanel / Grid / Canvas, Border, TextBlock 
 
 Plugin that exports a ZIP for manual upload to Claude Design: the `.penpot` file (`currentFile.export`), PNG/PDF of the selection, HTML/CSS from `generateMarkup` / `generateStyle`, tokens and the user's prompt. No automation of claude.ai. Done when the ZIP downloads from Penpot and its contents are covered by tests.
 
+Plan:
+
+1. `apps/plugin-claude` on the shell (port 4411), the home of T8 later. Manifest permissions: `content:read` (file export, markup), `library:read` (tokens), `allow:downloads` (Penpot adds `allow-downloads` to the iframe only with it).
+2. Plugin code `src/collect.ts`: on request, export the file with `currentFile.export('penpot', 'merge')` (one importable file), each selected shape as PNG at 2x, `generateMarkup` / `generateStyle` for the selection, and the local token sets as JSON. Empty selection: the bundle carries the file, tokens and prompt only.
+3. UI: prompt textarea and an export button; `src/bundle.ts` builds the ZIP (`README.md` with upload steps, `prompt.md`, `<file>.penpot`, `selection/*.png`, `selection.html` + `selection.css`, `tokens.json`) with fflate and downloads it. Shape and file names are untrusted: slugged, length-capped, numbered.
+4. Tests: ZIP entries and contents, name sanitizing (path traversal, empty, duplicates), `collect` against a fake `penpot`, manifest schema.
+5. Verify: `pnpm check`, build, install from `http://localhost:4411/manifest.json` in Penpot and download a bundle.
+
 ### T8. Redesign with Claude
 
-Select elements, write a prompt, send structured IR plus a PNG to the Claude Messages API with structured output constrained to the IR schema; validate and sanitize the answer and insert it as a new board next to the selection. User-supplied key, never stored in plugin code. Done when a mocked API round-trip inserts a valid board in tests and malformed or unsafe answers are rejected.
+In the Claude plugin, write a prompt and either select elements (their IR plus a PNG go to Claude, which generates a new element from them) or select nothing (Claude creates a new element from the prompt alone). The Claude Messages API answers with structured output constrained to the IR schema (T2); the plugin validates and sanitizes it and inserts it as a new board next to the selection, or in the viewport when nothing was selected. The API key is typed in each session and kept only in the iframe's memory, never stored and never in plugin code. A model picker defaults to `claude-opus-5-5` and offers `claude-sonnet-5-5`. Done when mocked API round-trips for both modes insert a valid board in tests and malformed or unsafe answers are rejected.
+
+### T9. Claude Code plugin: Penpot in the desktop browser
+
+A Claude Code plugin with a `/penpotx:penpot` skill that opens Penpot (design.penpot.app by default) or another Penpot page (docs, plugin hub, community, blog and others by name, or any http or https URL passed as the argument) in its own tab of the Claude desktop app's built-in browser, so the user designs next to the session. It never signs in for the user, asks before installing a penpotx plugin into the user's Penpot profile, and says so when the built-in browser is not available (a terminal session). Penpot cannot be embedded in a Claude Code pane: it sends `X-Frame-Options: SAMEORIGIN`. Done when the plugin passes `claude plugin validate`, installs from this repository's marketplace and `/penpot` opens Penpot in a new built-in browser tab.
+
+Plan:
+
+1. `apps/claude-code-plugin`: `.claude-plugin/plugin.json` and `skills/penpot/SKILL.md` (open, sign-in, plugin install and fallback rules); `.claude-plugin/marketplace.json` at the repository root pointing at it.
+2. A small package with a Vitest test that checks the manifest, the marketplace entry and the skill front matter.
+3. Verify: `claude plugin validate` on the plugin and the marketplace, `pnpm check`, then install it from the local marketplace and run `/penpot` in the desktop app.
+
+### T10. Serve the penpotx plugins locally and over https
+
+Two ways to serve every `apps/plugin-*`:
+
+1. **Local server.** One command serves the built plugins from `localhost`, plain http by default; `--https` switches to https with a locally trusted certificate from mkcert (Let's Encrypt and certbot do not issue certificates for `localhost`: https://letsencrypt.org/docs/certificates-for-localhost/). For the user's own Chrome, which asks for Local Network Access either way.
+2. **GitHub Pages.** CI builds the plugins and publishes them, so they install from a public https manifest URL. The Claude desktop built-in browser blocks requests from design.penpot.app to local addresses (`ERR_BLOCKED_BY_CLIENT`) whatever the scheme, so only hosted plugins work there; `/penpotx:penpot` (T9) then lists their URLs. Needs a public GitHub repository, created only after the creator confirms its owner and name.
+
+Done when each plugin's manifest installs in Penpot from the local server (http and `--https`) in Chrome and from Pages in the built-in browser.

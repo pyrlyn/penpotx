@@ -18,5 +18,6 @@
 | oxlint | local (root) | https://github.com/oxc-project/oxc | Lint |
 | oxfmt | local (root) | https://github.com/oxc-project/oxc | Formatting |
 | @types/node | local (root) | https://github.com/DefinitelyTyped/DefinitelyTyped | Node types for configs and tests |
-| zod | local (`packages/plugin-shell`) | https://github.com/colinhacks/zod | Manifest schema, the same library Penpot validates manifests with |
+| zod | local (`packages/plugin-shell`, `packages/ir`) | https://github.com/colinhacks/zod | Manifest and IR schemas; the same library Penpot validates manifests with |
 | @penpot/plugin-types | local (`apps/plugin-hello`) | https://github.com/penpot/penpot/tree/develop/plugins | Types of the Penpot Plugin API (`next` tag, first with design tokens) |
+| fflate | local (`apps/plugin-claude`) | https://github.com/101arrowz/fflate | Builds the Claude Design handoff ZIP in the plugin UI |
