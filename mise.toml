@@ -1,4 +1,5 @@
 [tools]
 node = "26.12.0"
+"npm:agent-browser" = "0.39.2"
 # The registry backend (aqua) ships the native binary; `npm:pnpm` 12 leaves a placeholder script.
 pnpm = "12.14.0"
