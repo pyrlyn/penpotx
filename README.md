@@ -1,4 +1,4 @@
-# penpotx
+<h1><picture><source media="(prefers-color-scheme: dark)" srcset="brand/logo-dark.svg"><img src="brand/logo.svg" width="32" height="32" alt="" align="absmiddle"></picture> penpotx</h1>
 
 Penpot plugins that turn designs into native UI code and connect Penpot to Claude.
 
